@@ -41,9 +41,9 @@ string Postfix(string exe){
         if(comand[0]>='0'&&comand[0]<='9'){
             push(number,comand);
         }else{
-            int one = stoi(number->head->person);
-            pop(number);
             int two = stoi(number->head->person);
+            pop(number);
+            int one = stoi(number->head->person);
             pop(number);
             if(comand[0]=='+'){
                 one+=two;
@@ -55,6 +55,10 @@ string Postfix(string exe){
                 one*=two;
                 push(number, to_string(one));
             }else if(comand[0]=='/'){
+                if(two==0){
+                    cout<<"Ошибка, на ноль делить нельзя"<<endl;
+                    return 0;
+                }
                 float element = (float)one/two;
                 push(number, to_string(element));
             }
